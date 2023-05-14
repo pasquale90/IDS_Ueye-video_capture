@@ -20,4 +20,4 @@ obj/console.o:console.h console.cpp
 	$(COMPILE) -c console.cpp -o obj/console.o
 
 clean:
-	-rm -r $(OBJECTS_REC) $(OBJECTS_WB) bin
+	-rm -r $(OBJECTS_REC) bin 
