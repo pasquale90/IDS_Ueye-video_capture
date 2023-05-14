@@ -1,0 +1,24 @@
+Hello Ueye
+camera_id 1
+capture_seconds 1
+frames_per_second 1
+resolution 3088,2076
+output_dir output/202305142130
+settings_file ueye/parameters/green.ini
+Retrieving information about the cameras connected
+Camera 0 Id: 1
+Collecting information about the camera sensor
+Cameramodel:		UI388xLE-C
+Maximum image width:		3088
+Maximum image height:		2076
+Collecting information about the camera type
+ColorMode:		1
+BitsPerPixel:		24
+fps_requested 1
+actualfps 1.00001
+Fps are set to : 1.00001
+Total number of buffers1
+FrameTimeMin=1,FrameTimeMax=1.001,FrameTimeIntervall=1.33784e-05
+Total number of buffers1
+Allocating 3 number of images
+Deallocating 3 number of images
