@@ -1,6 +1,6 @@
 #ifndef CAMERA_INCLUDED
 #define CAMERA_INCLUDED
-
+#include "settings.h"
 #include "ueye.h"
 
 
@@ -8,7 +8,7 @@ class Ueye_camera{
   public:
 
     Ueye_camera();
-    Ueye_camera(int id);
+    Ueye_camera(Settings &s1);
     ~Ueye_camera();
     Ueye_camera(int id,int testing); //erase when done or replace if valid
 
@@ -46,6 +46,7 @@ class Ueye_camera{
     UEYE_CAMERA_LIST* pucl;
   private:
     //Constructor
+    Settings s;
     int camera_id;
     HIDS hCam; 
     HWND hWndDisplay;

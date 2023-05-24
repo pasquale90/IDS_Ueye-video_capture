@@ -6,7 +6,7 @@ static std::string default_datetime{"RightNow"};
 static int default_camera_id{1};
 static int default_capture_seconds{1};
 static int default_frames_per_second{58};
-static int default_max_resolution[2]={3088,2076};
+static std::pair<int,int> default_max_resolution{3088,2076};
 
 static std::string default_output_dir{"output"};
 

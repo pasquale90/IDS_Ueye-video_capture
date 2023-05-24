@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
-
+#include "settings.h"
 #include "ueye_camera.h"
 
 
@@ -629,9 +629,9 @@ void Ueye_camera::auto_sexposure_gainc(double max_gain){
 
 void Ueye_camera::set_parameters(double fps_requested){
 
-  double newDisplaySizeX= MaxImageSizeX;
-  double newDisplaySizeY= MaxImageSizeY;
-  set_display_size(MaxImageSizeX,MaxImageSizeY);
+  double newDisplaySizeX=DisplayWidth;          // (double) s.resolution.at(0);
+  double newDisplaySizeY= DisplayHeight;        //(double) s.resolution.at(1);
+  set_display_size(newDisplaySizeX,newDisplaySizeY);
 
   //Set color mode
   if (sInfo.nColorMode==IS_COLORMODE_BAYER){
@@ -685,9 +685,9 @@ void Ueye_camera::set_parameters(double fps_requested){
   std::cout<<"Fps are set to : "<<fps<<std::endl;
 }
 
-void Ueye_camera::set_display_size(int maxX,int maxY){
-  this->DisplayWidth=maxX;
-  this->DisplayHeight=maxY;
+void Ueye_camera::set_display_size(int X,int Y){
+  this->DisplayWidth=X;
+  this->DisplayHeight=Y;
 }
 
 void Ueye_camera::camera_info(){
@@ -720,6 +720,8 @@ void Ueye_camera::camera_info(){
   std::cout<<"Cameramodel:\t\t"<<sInfo.strSensorName<<std::endl;
   std::cout<<"Maximum image width:\t\t"<<sInfo.nMaxWidth<<std::endl;
   std::cout<<"Maximum image height:\t\t"<<sInfo.nMaxHeight<<std::endl;
+  // std::cout<<"Selected image width:\t\t"<<s.resolution.at(0)<<std::endl;
+  // std::cout<<"Selected image height:\t\t"<<s.resolution.at(1)<<std::endl;
 
   MaxImageSizeX=sInfo.nMaxWidth;
   MaxImageSizeY=sInfo.nMaxHeight;
@@ -789,8 +791,9 @@ Ueye_camera::Ueye_camera(int id,int testing){
   this->method_report(nRet,"Ueye_camera(int id)");
 }
 
-Ueye_camera::Ueye_camera(int id){
-  this->camera_id=id;
+Ueye_camera::Ueye_camera(Settings &s){
+  this->s=s;
+  this->camera_id=s.camera_id;
   hCam=camera_id | IS_USE_DEVICE_ID;
   hWndDisplay=NULL;
   nRet=is_InitCamera(&hCam,hWndDisplay);
