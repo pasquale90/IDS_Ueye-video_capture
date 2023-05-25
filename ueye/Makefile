@@ -3,11 +3,12 @@ FLAGS=-g -pedantic -Wall -Wextra -Wno-error
 COMPILE=$(CC) $(FLAGS)
 UEYE_INCLUDE=/opt/ids/ueye/include
 OBJECTS_REC=obj/main_rec.o obj/ueye_camera.o obj/console.o
+UEYE_DIRS=bin
 
 all: rec
 
 rec:$(OBJECTS_REC)
-	mkdir bin
+	mkdir $(UEYE_DIRS)
 	$(COMPILE) $(OBJECTS_REC) -I$(UEYE_INCLUDE) -L/usr/lib -lueye_api -lpthread -o bin/record_video
 
 obj/main_rec.o:main_rec.cpp ueye_camera.h console.cpp
@@ -20,4 +21,4 @@ obj/console.o:console.h console.cpp
 	$(COMPILE) -c console.cpp -o obj/console.o
 
 clean:
-	-rm -r $(OBJECTS_REC) bin 
+	-rm -r $(OBJECTS_REC) $(UEYE_DIRS) 
